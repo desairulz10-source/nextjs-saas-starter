@@ -1,6 +1,21 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import NextAuth, { DefaultSession } from 'next-auth';
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: string;
+      role: string;
+    } & DefaultSession['user'];
+  }
+
+  interface User {
+    role: string;
+  }
+}
+
+declare module 'next-auth/jwt' {
+  interface JWT {
+    id?: string;
+    role?: string;
+  }
 }
