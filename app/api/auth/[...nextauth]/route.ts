@@ -1,6 +1,6 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import NextAuth from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
