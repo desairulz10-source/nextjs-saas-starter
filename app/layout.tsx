@@ -1,6 +1,25 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { Providers } from '@/components/providers';
+import './globals.css';
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'SaaS Starter - Launch Your Business in Hours',
+  description: 'Production-ready SaaS boilerplate built with Next.js 14, TypeScript, and Stripe.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
 }
